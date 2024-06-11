@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -23,12 +24,12 @@ public class productController {
         allProds.add(prods);
         return prods;
     }
+
     @GetMapping("/getall")
     public  List getall(){
-        List<String> flatProds = new ArrayList<>();
-        for(List<String> prodlist: allProds){
-            flatProds.addAll(prodlist);
-        }
-        return flatProds;
+
+        return allProds;
+
     }
+
 }
