@@ -10,18 +10,18 @@ import java.util.List;
 @RestController
 public class testController {
 
-
+    List<String> prods = new ArrayList<>();
     @GetMapping("/getall")
-    public  String getall(){
+    public  List getall(){
 
-        return  "scsc";
+        return prods;
     }
 
     @PostMapping("/create")
     public List create(Product product){
 
         System.out.println(product.getId() + product.getPrice() + product.getDescription());
-        List<String> prods = new ArrayList<>();
+        prods = new ArrayList<>();
         prods.add(product.getId());
         prods.add(product.getPrice().toString());
         prods.add(product.getDescription());
