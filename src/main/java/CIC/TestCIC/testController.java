@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class testController {
 
@@ -14,11 +17,14 @@ public class testController {
         return  "scsc";
     }
 
-    @PostMapping(
-    )
-    public int Create(int id){
+    @PostMapping("/create")
+    public List create(Product product){
 
-
-        return  id+7;
+        System.out.println(product.getId() + product.getPrice() + product.getDescription());
+        List<String> prods = new ArrayList<>();
+        prods.add(product.getId());
+        prods.add(product.getPrice().toString());
+        prods.add(product.getDescription());
+        return prods;
     }
 }
