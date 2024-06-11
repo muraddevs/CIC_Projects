@@ -10,9 +10,7 @@ import java.util.List;
 
 @RestController
 public class productController {
-    List<List<String>> allProds = new ArrayList<>();
-
-
+    newDB data = new newDB();
 
     @PostMapping("/create")
     public List create(Product product){
@@ -21,15 +19,23 @@ public class productController {
         prods.add(product.getId());
         prods.add(product.getPrice().toString());
         prods.add(product.getDescription());
-        allProds.add(prods);
+        data.db.add(prods);
         return prods;
     }
 
     @GetMapping("/getall")
     public  List getall(){
+        return data.db;
+    }
 
-        return allProds;
+    @GetMapping("/getids")
+    public List<String> getAllIds() {
+        return data.getAllIds();
+    }
 
+    @GetMapping("/getprices")
+    public List<String> getAllPrices() {
+        return data.getAllPrices();
     }
 
 }
