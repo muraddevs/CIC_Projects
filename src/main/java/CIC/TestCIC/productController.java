@@ -8,23 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class testController {
+public class productController {
+    List<List<String>> allProds = new ArrayList<>();
 
-    List<String> prods = new ArrayList<>();
-    @GetMapping("/getall")
-    public  List getall(){
 
-        return prods;
-    }
 
     @PostMapping("/create")
     public List create(Product product){
-
-        System.out.println(product.getId() + product.getPrice() + product.getDescription());
-        prods = new ArrayList<>();
+        List<String> prods = new ArrayList<>();
+        //System.out.println(product.getId() + product.getPrice() + product.getDescription());
         prods.add(product.getId());
         prods.add(product.getPrice().toString());
         prods.add(product.getDescription());
+        allProds.add(prods);
         return prods;
+    }
+    @GetMapping("/getall")
+    public  List getall(){
+        List<String> flatProds = new ArrayList<>();
+        for(List<String> prodlist: allProds){
+            flatProds.addAll(prodlist);
+        }
+        return flatProds;
     }
 }
