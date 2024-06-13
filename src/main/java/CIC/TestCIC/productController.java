@@ -1,7 +1,10 @@
 package CIC.TestCIC;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -37,5 +40,12 @@ public class productController {
     public List<String> getAllPrices() {
         return data.getAllPrices();
     }
+
+    @PostMapping
+    public ResponseEntity<newProduct> createNewProduct(@RequestBody newProduct NewProduct) {
+        newProduct createdProduct = newProductService.createProduct(NewProduct);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+    }
+
 
 }
